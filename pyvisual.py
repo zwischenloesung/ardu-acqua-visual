@@ -16,9 +16,9 @@ def clean_up():
 def setup_water():
     # water container
     ## visual empty container
-    os["w"] = cylinder(pos=(12,-14,10), axis=(0,5,0), radius=5, length=20, color=(0,1,1), opacity=0.5)
+    os["w"] = cylinder(pos=(12,-16,8), axis=(0,5,1), radius=6, length=20, color=(0,1,1), opacity=0.5, material=materials.rough)
     ## visual water
-    os["wv"] = cylinder(pos=(12,-14,10), axis=(0,5,0), radius=5, length=.1)
+    os["wv"] = cylinder(pos=(12,-16,8), axis=(0,5,1), radius=6, length=.1, color=(0,0.8,1), opacity=0.5, material=materials.rough)
     ## visual label
     os["wt"] = label(pos=(22,-10,10), text='W: 0.0cm')
 
@@ -30,7 +30,8 @@ def set_water(v):
 
 def setup_temperature():
     # temperature
-    os["tv"] = cylinder(pos=(-20,0,10), axis=(0,5,0), radius=1, length=.1, color=(1,0,0))
+    os["ts"] = sphere(pos=(-20,-1,9.8), radius=1.6, color=(1,0,0))
+    os["tv"] = cylinder(pos=(-20,0,10), axis=(0,5,1), radius=.6, length=1, color=(1,0,0))
     os["tt"] = label(pos=(-12,4,10), text=u'T: 0\xb0C')
 
 def set_temperature(v):
@@ -39,9 +40,9 @@ def set_temperature(v):
     os["tt"].text = u'T: ' + str(v) + u'\xb0C'
 
 def setup_humidity():
-    os["bv"] = box(pos=(-20,-10,10), length=8, height=8, width=8, color=(0,0,1), opacity=0.5)
-    os["b"] = box(pos=(-20,-10,10), length=8, height=8, width=8, color=(1,1,1), opacity=0.5)
-    os["bt"] = label(pos=(-12,-10,10), text='H: 100%')
+    os["bv"] = box(pos=(-20,-10,10), axis=(0,5,1), length=8, height=8, width=8, color=(0,0,1), opacity=0.5)
+    os["b"] = box(pos=(-20,-10,10), axis=(0,5,1), length=8, height=8, width=8, color=(1,1,1), opacity=0.5)
+    os["bt"] = label(pos=(-12,-10,10), axis=(0,5,1), text='H: 100%')
 
 def set_humidity(v):
     bn = v / 10
