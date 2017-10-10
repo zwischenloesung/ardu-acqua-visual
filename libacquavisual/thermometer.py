@@ -38,7 +38,8 @@ class Thermometer(object):
                             opacity=opacity, material=material)
         # visualize the expander
         self.expander = cylinder(pos=pos, axis=axis, radius=radius,\
-                            length=length, opacity=opacity, material=material)
+                            length=length, color=hot_color,\
+                            opacity=opacity, material=material)
         # add a label
         p = self.calc_label_pos(pos)
         self.label = label(pos=p, text=u'T: 0.0\xb0C')
