@@ -28,17 +28,18 @@ class Thermometer(object):
             length = 0.000001
 
         # color and material
-        hot_color = (1,0,0)
-#        cold_color = (0,0,1)
+        self.hot_color = (1,0,0)
+        ### for now say: below zero this liquid is expanding...
+        self.cold_color = (0.4,0.4,1)
         opacity = 1
         material = materials.rough
 
         # visualize the reservoir
-        self.reservoir = sphere(pos=pos, radius=radius*4, color=hot_color,\
+        self.reservoir = sphere(pos=pos, radius=radius*4, color=self.hot_color,\
                             opacity=opacity, material=material)
         # visualize the expander
         self.expander = cylinder(pos=pos, axis=axis, radius=radius,\
-                            length=length, color=hot_color,\
+                            length=length, color=self.hot_color,\
                             opacity=opacity, material=material)
         # add a label
         p = self.calc_label_pos(pos)
@@ -64,8 +65,22 @@ class Thermometer(object):
         """
         Set the display to visualize the sensor measurement
         """
+        if value > 0:
+            s = "+"
+            color = self.hot_color
+        elif value == 0:
+            # a cylinders length MUST NEVER be '0' ...
+            value = 0.000001
+        else:
+            # out of lack of a better idea at the moment:
+            s = "-"
+            value = abs(value)
+            color = self.cold_color
+
+        self.reservoir.color = color
+        self.expander.color = color
         self.expander.length = value / 2
-        self.label.text = u'T: ' + str(value) + u'\xb0C'
+        self.label.text = u'T: ' + s + str(value) + u'\xb0C'
 
     def clean_up(self):
         """
