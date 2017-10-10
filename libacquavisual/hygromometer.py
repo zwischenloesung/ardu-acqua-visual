@@ -25,26 +25,26 @@ class GlassOfWater(object):
         self.zero = None
 
         # color and material
-        glass_color = (0,1,1)
-        liquid_color = (0,0.8,1)
-        glass_opacity = 0.5
-        liquid_opacity = 0.5
-        glass_material = materials.rough
-        liquid_material = materials.rough
+        room_color = (1,1,1)
+        wet_color = (0,0,1)
+        room_opacity = 0.5
+        wet_opacity = 0.5
+        room_material = materials.diffuse
+        wet_material = materials.diffuse
 
-        # visualize the empty container
-        self.glass = cylinder(pos=pos, axis=axis, radius=radius, length=length,\
-                            color=glass_color, opacity=glass_opacity,\
-                            material=glass_material)
-        # visualize the liquid (just a little to start with)
-        self.liquid = cylinder(pos=pos, axis=axis, radius=radius, length=.1,\
-                            color=liquid_color, opacity=liquid_opacity,\
-                            material=liquid_material)
+        # visualize the empty space
+        self.room = box(pos=pos, axis=axis, length=length, height=heigth,\
+                        width=width, opacity=room_opacity, color=room_color,\
+                        material=room_material)
+        # visualize the humidity
+        self.wet = box(pos=pos, axis=axis, length=length, height=heigth,\
+                        width=width, opacity=wet_opacity, color=wet_color,\
+                        material=wet_material)
         # add a label
         p = calc_label_pos(pos)
-        self.label = label(pos=p, text='W: 0.0cm')
+        self.label = label(pos=p, text='H: 100%')
 
-    def calc_label_pos(pos):
+    def calc_label_pos(self, pos):
         """
         Explicit calculation of the label position to the
         lower right, relative to the main object.
@@ -52,15 +52,24 @@ class GlassOfWater(object):
         p = (pos[0]+8,pos[1]+5,pos[2]+2)
         return p
 
-    def calibrate(value):
+    def calibrate(self, value):
         """
         Calibrate the sensor to a certain initial value.
         """
+        # We are getting absolute values already
         pass
 
-    def display_value(value):
+    def display_value(self, value):
         """
         Set the display to visualize the sensor measurement
         """
         pass
+
+    def clean_up(self):
+        """
+        Clean up the display
+        """
+        self.room.visible = False
+        self.wet.visible = False
+        self.label.visible = False
 
