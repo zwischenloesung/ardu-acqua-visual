@@ -1,6 +1,6 @@
 """
 MODULE:       glassofwater
-PURPOSE:      visualize a glas of water
+PURPOSE:      visualize a glass of water
 AUTHOR(S):    michael lustenberger inofix.ch
 COPYRIGHT:    (C) 2017 by Michael Lustenberger and the INOFIX GmbH
 
