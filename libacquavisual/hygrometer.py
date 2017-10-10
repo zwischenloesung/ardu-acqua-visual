@@ -32,14 +32,16 @@ class Hygrometer(object):
         room_material = materials.diffuse
         wet_material = materials.diffuse
 
-        # visualize the empty space
-        self.room = box(pos=pos, axis=axis, length=length, height=height,\
-                        width=width, opacity=room_opacity, color=room_color,\
-                        material=room_material)
+        ## NOTE: do not change the order here, or self.wet will never be
+        #        seen again.. (even with opaque, vpython hides the second cube)
         # visualize the humidity
         self.wet = box(pos=pos, axis=axis, length=length, height=height,\
                         width=width, opacity=wet_opacity, color=wet_color,\
                         material=wet_material)
+        # visualize the empty space
+        self.room = box(pos=pos, axis=axis, length=length, height=height,\
+                        width=width, opacity=room_opacity, color=room_color,\
+                        material=room_material)
         # add a label
         p = self.calc_label_pos(pos)
         self.label = label(pos=p, text='H: 100%')
@@ -63,7 +65,11 @@ class Hygrometer(object):
         """
         Set the display to visualize the sensor measurement
         """
-        pass
+        v = value / 10
+        self.wet.length = v
+        self.wet.height = v
+        self.wet.width = v
+        self.wet.text = 'H: ' + str(v) + '%'
 
     def clean_up(self):
         """
