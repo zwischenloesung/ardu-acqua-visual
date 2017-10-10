@@ -44,7 +44,7 @@ class GlassOfWater(object):
         p = calc_label_pos(pos)
         self.label = label(pos=p, text='W: 0.0cm')
 
-    def calc_label_pos(pos):
+    def calc_label_pos(self, pos):
         """
         Explicit calculation of the label position to the
         lower right, relative to the main object.
@@ -52,15 +52,23 @@ class GlassOfWater(object):
         p = (pos[0]+8,pos[1]+5,pos[2]+2)
         return p
 
-    def calibrate(value):
+    def calibrate(self, value):
         """
         Calibrate the sensor to a certain initial value.
         """
         pass
 
-    def display_value(value):
+    def display_value(self, value):
         """
         Set the display to visualize the sensor measurement
         """
         pass
+
+    def clean_up(self):
+        """
+        Clean up the display
+        """
+        self.glass.visible = False
+        self.liquid.visible = False
+        self.label.visible = False
 
