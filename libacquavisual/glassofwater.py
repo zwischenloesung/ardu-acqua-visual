@@ -22,7 +22,13 @@ class GlassOfWater(object):
         Construct it with a preset or given geometry.
         """
         # calibration (see: calibrate(value))
-        self.zero = None
+        self.zero = 0
+        self.correction = 0
+
+        # a cylinders length MUST NEVER be '0' in pvisual ...
+        # and in our case not below the zero point: empty is empty..
+        if length <= 0:
+            length = 0.001
 
         # color and material
         glass_color = (0,1,1)
@@ -52,17 +58,32 @@ class GlassOfWater(object):
         p = (pos[0]+8,pos[1]+5,pos[2]+2)
         return p
 
-    def calibrate(self, value):
+    def calibrate(self, value, zero=None):
         """
         Calibrate the sensor to a certain initial value.
+        Assumption: The sensor is delivering an approximation already and
+            we have to calculate only the difference.
+        TODO later we might want to have more than one calibration methods..
         """
-        pass
+        # set it or leave it
+        if zero is not None:
+            self.zero = zero
+        # the expected zero value to compare to zero at the time of measuremnt
+        self.correction = self.zero - value
 
     def display_value(self, value):
         """
         Set the display to visualize the sensor measurement
         """
-        pass
+        v = (self.zero - self.correction - value) * 100
+        if v <= 0:
+            # a cylinders length MUST NEVER be '0' in pvisual ...
+            # and in our case not below the zero point: empty is empty..
+            v = 0.001
+            self.label.text='W: 0.0cm'
+        else:
+            self.label.text='W: ' + str(v) + 'cm'
+        self.liquid.length = v
 
     def clean_up(self):
         """

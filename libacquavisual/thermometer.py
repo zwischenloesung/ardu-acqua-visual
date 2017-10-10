@@ -23,7 +23,7 @@ class Thermometer(object):
         # calibration (see: calibrate(value))
         self.zero = None
 
-        # a cylinders length MUST NEVER be '0' ...
+        # a cylinders length MUST NEVER be '0' in pvisual ...
         if length == 0:
             length = 0.000001
 
@@ -69,7 +69,7 @@ class Thermometer(object):
             s = "+"
             color = self.hot_color
         elif value == 0:
-            # a cylinders length MUST NEVER be '0' ...
+            # a cylinders length MUST NEVER be '0' in pvisual ...
             value = 0.000001
         else:
             # out of lack of a better idea at the moment:
