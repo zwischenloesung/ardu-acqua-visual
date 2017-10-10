@@ -69,7 +69,7 @@ class Hygrometer(object):
         self.wet.length = v
         self.wet.height = v
         self.wet.width = v
-        self.wet.text = 'H: ' + str(v) + '%'
+        self.label.text = 'H: ' + str(value) + '%'
 
     def clean_up(self):
         """
