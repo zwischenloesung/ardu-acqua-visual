@@ -43,7 +43,7 @@ class Thermometer(object):
         p = calc_label_pos(pos)
         self.label = label(pos=p, text=u'T: 0.0\xb0C')
 
-    def calc_label_pos(pos):
+    def calc_label_pos(self, pos):
         """
         Explicit calculation of the label position to the
         lower right, relative to the main object.
@@ -51,7 +51,7 @@ class Thermometer(object):
         p = (pos[0]+8,pos[1]+5,pos[2]+2)
         return p
 
-    def calibrate(value):
+    def calibrate(self, value):
         """
         Calibrate the sensor to a certain initial value.
         """
@@ -59,9 +59,18 @@ class Thermometer(object):
         # TODO - but maybe we want to set 0 for the liquid column
         pass
 
-    def display_value(value):
+    def display_value(self, value):
         """
         Set the display to visualize the sensor measurement
         """
-        pass
+        self.expander.length = value / 2
+        self.label.text = u'T: ' + str(value) + u'\xb0C'
+
+    def clean_up(self):
+        """
+        Clean up the display
+        """
+        self.expander.visible = False
+        self.reservoir.visible = False
+        self.label.visible = False
 
