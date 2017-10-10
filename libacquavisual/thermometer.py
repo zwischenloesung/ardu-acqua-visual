@@ -16,32 +16,32 @@ class Thermometer(object):
     Create a thermometer and let it show the temperature.
     """
 
-    def __init__(self, pos=(12,-16,8), axis=(0,5,1), radius=6, length=20):
+    def __init__(self, pos=(-20,0,10), axis=(0,5,1), radius=.5, length=0):
         """
         Construct it with a preset or given geometry.
         """
         # calibration (see: calibrate(value))
         self.zero = None
 
-        # color and material
-        glass_color = (0,1,1)
-        liquid_color = (0,0.8,1)
-        glass_opacity = 0.5
-        liquid_opacity = 0.5
-        glass_material = materials.rough
-        liquid_material = materials.rough
+        # a cylinders length MUST NEVER be '0' ...
+        if length == 0:
+            length = 0.000001
 
-        # visualize the empty container
-        self.glass = cylinder(pos=pos, axis=axis, radius=radius, length=length,\
-                            color=glass_color, opacity=glass_opacity,\
-                            material=glass_material)
-        # visualize the liquid (just a little to start with)
-        self.liquid = cylinder(pos=pos, axis=axis, radius=radius, length=.1,\
-                            color=liquid_color, opacity=liquid_opacity,\
-                            material=liquid_material)
+        # color and material
+        hot_color = (1,0,0)
+#        cold_color = (0,0,1)
+        opacity = 1
+        material = materials.rough
+
+        # visualize the reservoir
+        self.reservoir = sphere(pos=pos, radius=radius*4, color=hot_color\
+                            opacity=opacity, material=material)
+        # visualize the expander
+        self.expander = cylinder(pos=pos, axis=axis, radius=radius,\
+                            length=length, opacity=opacity, material=material)
         # add a label
         p = calc_label_pos(pos)
-        self.label = label(pos=p, text='W: 0.0cm')
+        self.label = label(pos=p, text=u'T: 0.0\xb0C')
 
     def calc_label_pos(pos):
         """
@@ -55,6 +55,8 @@ class Thermometer(object):
         """
         Calibrate the sensor to a certain initial value.
         """
+        # We are getting absolute values already
+        # TODO - but maybe we want to set 0 for the liquid column
         pass
 
     def display_value(value):
