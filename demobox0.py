@@ -54,18 +54,18 @@ def real_data_run(args):
         sleep(1)
         try:
             t = store.data[args.temperature_key][args.val]
-            print "T: " + str(t)
+            print("T: " + str(t))
             temp.display_value(float(t))
             h = store.data[args.humidity_key][args.val]
-            print "H: " + str(h)
+            print("H: " + str(h))
             hum.display_value(float(h))
             w = store.data[args.water_key][args.val]
-            print "W: " + str(w)
+            print("W: " + str(w))
             glass.display_value(float(w))
-            print "-------"
+            print("-------")
         except KeyError as e:
             # Wait for next iter
-            print e
+            print(e)
 
     reader.halt()
 
