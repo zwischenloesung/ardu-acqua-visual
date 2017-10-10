@@ -11,7 +11,7 @@ COPYRIGHT:    (C) 2017 by Michael Lustenberger and the INOFIX GmbH
 from __future__ import division
 from visual import box, materials, label
 
-class GlassOfWater(object):
+class Hygrometer(object):
     """
     Create a box visualizing the relative humidity.
     """
@@ -33,15 +33,15 @@ class GlassOfWater(object):
         wet_material = materials.diffuse
 
         # visualize the empty space
-        self.room = box(pos=pos, axis=axis, length=length, height=heigth,\
+        self.room = box(pos=pos, axis=axis, length=length, height=height,\
                         width=width, opacity=room_opacity, color=room_color,\
                         material=room_material)
         # visualize the humidity
-        self.wet = box(pos=pos, axis=axis, length=length, height=heigth,\
+        self.wet = box(pos=pos, axis=axis, length=length, height=height,\
                         width=width, opacity=wet_opacity, color=wet_color,\
                         material=wet_material)
         # add a label
-        p = calc_label_pos(pos)
+        p = self.calc_label_pos(pos)
         self.label = label(pos=p, text='H: 100%')
 
     def calc_label_pos(self, pos):

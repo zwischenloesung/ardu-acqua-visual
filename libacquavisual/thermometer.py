@@ -34,13 +34,13 @@ class Thermometer(object):
         material = materials.rough
 
         # visualize the reservoir
-        self.reservoir = sphere(pos=pos, radius=radius*4, color=hot_color\
+        self.reservoir = sphere(pos=pos, radius=radius*4, color=hot_color,\
                             opacity=opacity, material=material)
         # visualize the expander
         self.expander = cylinder(pos=pos, axis=axis, radius=radius,\
                             length=length, opacity=opacity, material=material)
         # add a label
-        p = calc_label_pos(pos)
+        p = self.calc_label_pos(pos)
         self.label = label(pos=p, text=u'T: 0.0\xb0C')
 
     def calc_label_pos(self, pos):

@@ -41,7 +41,7 @@ class GlassOfWater(object):
                             color=liquid_color, opacity=liquid_opacity,\
                             material=liquid_material)
         # add a label
-        p = calc_label_pos(pos)
+        p = self.calc_label_pos(pos)
         self.label = label(pos=p, text='W: 0.0cm')
 
     def calc_label_pos(self, pos):
