@@ -27,6 +27,7 @@ if __name__ == '__main__':
             hum.display_value(float(store.data["env_humidity"]["value"]))
             print "W" + str(store.data["water_distance"]["value"])
             glass.display_value(float(store.data["water_distance"]["value"]))
+            print "-----"
         except KeyError as e:
             # Wait for next iter
             print e
