@@ -18,6 +18,7 @@ use vpython installed through pip - but still, for the arduino
 project, I will probably use both tracks in parallel for some
 time..
 
+
 Dependencies, Requirements
 --------------------------
 
@@ -34,6 +35,7 @@ Dependencies, Requirements
 
 Basic Idea
 ----------
+
 Just for fun..
 
 For the flussbad-berlin.de project we want to visualize the
@@ -47,4 +49,10 @@ This is just a first test to see whether the raspberry pi is
 not getting too busy..
 
 
+Outlook
+-------
+
+Really nice to have would be a vpython7 based collection
+of objects, that could be loaded based on a JSON config
+to visualize a certain sensor setup...
 
