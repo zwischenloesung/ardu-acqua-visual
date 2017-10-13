@@ -19,7 +19,7 @@ with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
 
 setup(
     name='ardu-acqua-visual',
-    version='0.2.0',
+    version='0.2.1',
     description='Get sensor data over the serial line and draw some nice 3d objects.',
     long_description=long_description,
 
