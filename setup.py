@@ -18,7 +18,7 @@ with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
     long_description = f.read()
 
 setup(
-    name='https://github.com/inofix/ardu-acqua-visual',
+    name='ardu-acqua-visual',
     version='0.2.0',
     description='Get sensor data over the serial line and draw some nice 3d objects.',
     long_description=long_description,
